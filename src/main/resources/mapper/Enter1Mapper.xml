@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.dao.Enter1Mapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.pojo.Enter1" >
+    <id column="e_id" property="eId" jdbcType="INTEGER" />
+    <result column="house_id" property="houseId" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="customer_info" property="customerInfo" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time_estimate" property="endTimeEstimate" jdbcType="TIMESTAMP" />
+    <result column="end_time_actual" property="endTimeActual" jdbcType="TIMESTAMP" />
+    <result column="order_customer_id" property="orderCustomerId" jdbcType="INTEGER" />
+    <result column="fee_total" property="feeTotal" jdbcType="DOUBLE" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="e_state" property="eState" jdbcType="INTEGER" />
+    <result column="e_price" property="ePrice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    e_id, house_id, customer_id, customer_info, start_time, end_time_estimate, end_time_actual, 
+    order_customer_id, fee_total, user_id, e_state, e_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enter1
+    where e_id = #{eId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enter1
+    where e_id = #{eId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.pojo.Enter1" >
+    insert into enter1 (e_id, house_id, customer_id, 
+      customer_info, start_time, end_time_estimate, 
+      end_time_actual, order_customer_id, fee_total, 
+      user_id, e_state, e_price
+      )
+    values (#{eId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
+      #{customerInfo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTimeEstimate,jdbcType=TIMESTAMP}, 
+      #{endTimeActual,jdbcType=TIMESTAMP}, #{orderCustomerId,jdbcType=INTEGER}, #{feeTotal,jdbcType=DOUBLE}, 
+      #{userId,jdbcType=INTEGER}, #{eState,jdbcType=INTEGER}, #{ePrice,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.pojo.Enter1" >
+    insert into enter1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        e_id,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerInfo != null" >
+        customer_info,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTimeEstimate != null" >
+        end_time_estimate,
+      </if>
+      <if test="endTimeActual != null" >
+        end_time_actual,
+      </if>
+      <if test="orderCustomerId != null" >
+        order_customer_id,
+      </if>
+      <if test="feeTotal != null" >
+        fee_total,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="eState != null" >
+        e_state,
+      </if>
+      <if test="ePrice != null" >
+        e_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerInfo != null" >
+        #{customerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimeEstimate != null" >
+        #{endTimeEstimate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimeActual != null" >
+        #{endTimeActual,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCustomerId != null" >
+        #{orderCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="feeTotal != null" >
+        #{feeTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="eState != null" >
+        #{eState,jdbcType=INTEGER},
+      </if>
+      <if test="ePrice != null" >
+        #{ePrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.Enter1" >
+    update enter1
+    <set >
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerInfo != null" >
+        customer_info = #{customerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimeEstimate != null" >
+        end_time_estimate = #{endTimeEstimate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTimeActual != null" >
+        end_time_actual = #{endTimeActual,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCustomerId != null" >
+        order_customer_id = #{orderCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="feeTotal != null" >
+        fee_total = #{feeTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="eState != null" >
+        e_state = #{eState,jdbcType=INTEGER},
+      </if>
+      <if test="ePrice != null" >
+        e_price = #{ePrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.Enter1" >
+    update enter1
+    set house_id = #{houseId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      customer_info = #{customerInfo,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time_estimate = #{endTimeEstimate,jdbcType=TIMESTAMP},
+      end_time_actual = #{endTimeActual,jdbcType=TIMESTAMP},
+      order_customer_id = #{orderCustomerId,jdbcType=INTEGER},
+      fee_total = #{feeTotal,jdbcType=DOUBLE},
+      user_id = #{userId,jdbcType=INTEGER},
+      e_state = #{eState,jdbcType=INTEGER},
+      e_price = #{ePrice,jdbcType=DOUBLE}
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+</mapper>

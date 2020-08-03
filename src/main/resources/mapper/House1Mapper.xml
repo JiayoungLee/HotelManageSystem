@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.dao.House1Mapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.pojo.House1" >
+    <id column="h_id" property="hId" jdbcType="INTEGER" />
+    <result column="h_name" property="hName" jdbcType="VARCHAR" />
+    <result column="h_amount" property="hAmount" jdbcType="INTEGER" />
+    <result column="h_price" property="hPrice" jdbcType="DOUBLE" />
+    <result column="floor_id" property="floorId" jdbcType="INTEGER" />
+    <result column="h_state" property="hState" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="h_info" property="hInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    h_id, h_name, h_amount, h_price, floor_id, h_state, customer_id, h_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from house1
+    where h_id = #{hId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from house1
+    where h_id = #{hId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.pojo.House1" >
+    insert into house1 (h_id, h_name, h_amount, 
+      h_price, floor_id, h_state, 
+      customer_id, h_info)
+    values (#{hId,jdbcType=INTEGER}, #{hName,jdbcType=VARCHAR}, #{hAmount,jdbcType=INTEGER}, 
+      #{hPrice,jdbcType=DOUBLE}, #{floorId,jdbcType=INTEGER}, #{hState,jdbcType=INTEGER}, 
+      #{customerId,jdbcType=INTEGER}, #{hInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.pojo.House1" >
+    insert into house1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hId != null" >
+        h_id,
+      </if>
+      <if test="hName != null" >
+        h_name,
+      </if>
+      <if test="hAmount != null" >
+        h_amount,
+      </if>
+      <if test="hPrice != null" >
+        h_price,
+      </if>
+      <if test="floorId != null" >
+        floor_id,
+      </if>
+      <if test="hState != null" >
+        h_state,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="hInfo != null" >
+        h_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hId != null" >
+        #{hId,jdbcType=INTEGER},
+      </if>
+      <if test="hName != null" >
+        #{hName,jdbcType=VARCHAR},
+      </if>
+      <if test="hAmount != null" >
+        #{hAmount,jdbcType=INTEGER},
+      </if>
+      <if test="hPrice != null" >
+        #{hPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="floorId != null" >
+        #{floorId,jdbcType=INTEGER},
+      </if>
+      <if test="hState != null" >
+        #{hState,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="hInfo != null" >
+        #{hInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.House1" >
+    update house1
+    <set >
+      <if test="hName != null" >
+        h_name = #{hName,jdbcType=VARCHAR},
+      </if>
+      <if test="hAmount != null" >
+        h_amount = #{hAmount,jdbcType=INTEGER},
+      </if>
+      <if test="hPrice != null" >
+        h_price = #{hPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="floorId != null" >
+        floor_id = #{floorId,jdbcType=INTEGER},
+      </if>
+      <if test="hState != null" >
+        h_state = #{hState,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="hInfo != null" >
+        h_info = #{hInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where h_id = #{hId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.House1" >
+    update house1
+    set h_name = #{hName,jdbcType=VARCHAR},
+      h_amount = #{hAmount,jdbcType=INTEGER},
+      h_price = #{hPrice,jdbcType=DOUBLE},
+      floor_id = #{floorId,jdbcType=INTEGER},
+      h_state = #{hState,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      h_info = #{hInfo,jdbcType=VARCHAR}
+    where h_id = #{hId,jdbcType=INTEGER}
+  </update>
+</mapper>
