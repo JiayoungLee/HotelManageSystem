@@ -116,7 +116,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!--在 未被认证  之前都会重定向到vaule里面的url去-->
-        <property name="loginUrl" value="/tc/firstShiro.do"/>
+        <property name="loginUrl" value="/uc/toCheckOutPage.do"/>
         <!--认证成功执行的url-->
         <property name="successUrl" value="/s/index"/>
         <!--无法认证的url执行url--> <!--没有某些权限会重定向到value的url里面去-->
@@ -144,6 +144,10 @@
                 /pc/checkLogin.do = anon
                 /pc/logout.do = anon
                 /tc/firstShiro.do = anon
+
+                /uc/toCheckOutPage.do = anon
+                /uc/checkOutPage.ajax = anon
+
 
                 /pc/user.do = roles[user]
                 /pc/admin.do = roles[admin]

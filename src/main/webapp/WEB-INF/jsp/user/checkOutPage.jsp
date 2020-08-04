@@ -1,19 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 <head>
 
     <!-- bootstrap必须写的标签 -->
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
     <title>退房</title>
 
     <link rel="stylesheet" href="/static/css/pintuer.css">
     <link rel="stylesheet" href="/static/css/admin.css">
     <link rel="stylesheet" href="/static/css/font/iconfont.css">
-    <script src="/static/js/jquery.js"></script>
+
+    <script src="/static/js/jquery-3.5.0.min.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src="/static/js/pintuer.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 </head>
 
 <body onload="load(1)">
@@ -23,22 +27,26 @@
         <div class="padding border-bottom">
             <ul class="search">
                 <li>
-                    <input type="text" name="" />查询
+                    <input type="text" name=""/>查询
                 </li>
             </ul>
         </div>
         <table class="table table-hover text-center">
-            <tr>
-                <th>房间号</th>
-                <th>房型</th>
-                <th>单价</th>
-                <th>居住时间</th>
-                <th>总计</th>
-                <th>入住人</th>
+            <thead>
+            <th><input type="checkbox" id="selAll" onclick="selectAll()">选中全部</th>
+            <th>房间号</th>
+            <th>房型</th>
+            <th>单价</th>
+            <th>居住时间</th>
+            <th>总计</th>
+            <th>入住人</th>
 
-                <th>操作</th>
-            </tr>
-            
+            <th>操作</th>
+            </thead>
+
+            <tbody id="tb">
+
+
             <tr>
                 <td>1001</td>
                 <td>双床房</td>
@@ -49,21 +57,28 @@
 
                 <td>
                     <div class="button-group">
-                        <a class="button border-red" href="javascript:void(0)" onclick="return del(1)"><span class="icon-trash-o"></span> 退房</a>
+                        <a class="button border-red" href="javascript:void(0)" onclick="return del(1)"><span
+                                class="icon-trash-o"></span> 退房</a>
                         <a class="button border-red" href="info.html"><span class="icon-trash-o"></span> 详情</a>
                     </div>
                 </td>
             </tr>
+            </tbody>
 
 
 
-
-            <tr>
-                <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
-            </tr>
         </table>
     </div>
 </form>
+
+<div style="margin: 0 auto">
+    <button type="button" class="btn btn-success btn-sm" onclick="firstPage()">首页</button>
+    <button type="button" class="btn btn-success btn-sm" onclick="prePage()">上一页</button>&nbsp;&nbsp;
+    <span id="currentPage"></span>/
+    <span id="totalPage"></span>&nbsp;&nbsp;
+    <button type="button" class="btn btn-success btn-sm" onclick="nextPage()">下一页</button>
+    <button type="button" class="btn btn-success btn-sm" onclick="lastPage()">尾页</button>
+</div>
 
 <!-- 已入住客房详情模态框 -->
 <div class="modal fade" id="room_regist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -145,30 +160,96 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    
-    function load(p) {
+</body>
+</html>
+
+<script>
+
+    var pPage;
+    var nPage;
+    var fPage;
+    var lPage;
+    var currP;
+    var totalP;
+    var departments;
+
+    function prePage() {
+        load(pPage);
+    }
+
+    function nextPage() {
+        load(nPage);
+    }
+
+    function firstPage() {
+        load(fPage);
+    }
+
+    function lastPage() {
+        load(lPage);
+    }
+
+    //页面加载时运行此方法
+        function load(p) {
         //发送ajax请求
         $.ajax({
-            url: "${pageContext.request.contextPath }/uc/checkOutPage.do",
+            url: "${pageContext.request.contextPath }/uc/checkOutPage.ajax",
             type: "get",     //请求方式
             data: {"page": p},
             dataType: "json",       //返回的数据类型 对象用json；字符串和数字用text
-            sucess:function (data) {
+            success: function (data) {
+                console.log(data.list)
+                nPage = data.nextPage;
+                pPage = data.prePage;
+                fPage = data.firstPage;
+                lPage = data.totalPageNum;
+                currP = data.currentPage;
+                totalP = data.totalPageNum;
 
+
+                $("#currentPage").html(currP);
+                $("#totalPage").html(totalP);
+                var html="";
+                for (var i = 0; i < data.list.length; i++) {
+                    html += "<tr>" +
+                        "<td><input type='checkbox' name='delAll' value='" + data.list[i].id + "'></td>" +
+                        "<td>" + data.list[i].house1.hName + "</td>";
+
+                    if (data.list[i].house1.hAmount == 1) {
+                        html += "<td>大床房</td>";
+                    }
+                    if (data.list[i].house1.hAmount == 2) {
+                        html += "<td>双床房</td>";
+                    }
+
+                    html +=
+                        "<td>" + data.list[i].house1.hPrice + "</td>"+
+
+                    "<td><input type='date' value='" + data.list[i].startTime + "' readonly> </td>";
+
+
+                }
+                //把拼接信息显示在id为tb的标签里
+                alert(html)
+                $("#tb").html(html)
+            },
+
+            error:function () {
+                alert("响应ajax失败")
             }
         })
-        
+
     }
 
-    function del(id){
-        if(confirm("您确定要删除吗?")){
+
+    function del(id) {
+        if (confirm("您确定要删除吗?")) {
 
         }
     }
 
-    $("#checkall").click(function(){
-        $("input[name='id[]']").each(function(){
+    $("#checkall").click(function () {
+        $("input[name='id[]']").each(function () {
             if (this.checked) {
                 this.checked = false;
             }
@@ -178,24 +259,21 @@
         });
     })
 
-    function DelSelect(){
-        var Checkbox=false;
-        $("input[name='id[]']").each(function(){
-            if (this.checked==true) {
-                Checkbox=true;
+    function DelSelect() {
+        var Checkbox = false;
+        $("input[name='id[]']").each(function () {
+            if (this.checked == true) {
+                Checkbox = true;
             }
         });
-        if (Checkbox){
-            var t=confirm("您确认要删除选中的内容吗？");
-            if (t==false) return false;
+        if (Checkbox) {
+            var t = confirm("您确认要删除选中的内容吗？");
+            if (t == false) return false;
         }
-        else{
+        else {
             alert("请选择您要删除的内容!");
             return false;
         }
     }
 
 </script>
-</body>
-</html>
-

@@ -1,5 +1,7 @@
 package com.hqyj.pojo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +34,13 @@ public class Enter1 extends MyPage{
 
     private House1 house1;
 
-    private List<Fee1> fee1List;
+    private Fee1 fee1List;
 
-    public List<Fee1> getFee1List() {
+    public Fee1 getFee1List() {
         return fee1List;
     }
 
-    public void setFee1List(List<Fee1> fee1List) {
+    public void setFee1List(Fee1 fee1List) {
         this.fee1List = fee1List;
     }
 
@@ -90,12 +92,22 @@ public class Enter1 extends MyPage{
         this.customerInfo = customerInfo;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public String getStartTime() {
+        if (this.startTime!=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return simpleDateFormat.format(this.startTime);
+        }
+        return "";
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setStartTime(String startTime) throws ParseException {
+        if (startTime!=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date parseTime = simpleDateFormat.parse(startTime);
+            this.startTime = parseTime;
+        }else {
+            this.startTime = new Date();
+        }
     }
 
     public Date getEndTimeEstimate() {

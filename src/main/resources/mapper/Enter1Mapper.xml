@@ -33,7 +33,7 @@
             <result column="c_password" jdbcType="VARCHAR" property="cPassword"/>
             <result column="role" jdbcType="VARCHAR" property="role"/>
         </association>
-        <collection property="fee1" ofType="com.hqyj.pojo.Fee1">
+        <collection property="fee1List" ofType="com.hqyj.pojo.Fee1">
             <id column="f_id" jdbcType="INTEGER" property="fId"/>
             <result column="enter_id" jdbcType="INTEGER" property="enterId"/>
             <result column="direct" jdbcType="INTEGER" property="direct"/>
@@ -245,6 +245,6 @@ FROM
 enter1
 INNER JOIN customer1 ON customer1.c_id = enter1.customer_id
 INNER JOIN house1 ON enter1.house_id = house1.h_id
-INNER JOIN fee1 ON enter1.e_id = fee1.enter_id
+INNER JOIN fee1 ON enter1.e_id = fee1.enter_id where enter1.e_state = 2
   </select>
 </mapper>
