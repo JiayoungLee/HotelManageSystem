@@ -22,7 +22,7 @@
         <form method="post" class="form-x" action="">
             <div class="form-group">
                 <div class="label">
-                    <label for="sitename">帐号：</label>
+                    <label>帐号：</label>
                 </div>
                 <div class="field">
                     <label style="line-height:33px;">
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label for="sitename">姓名：</label>
+                    <label>姓名：</label>
                 </div>
                 <div class="field">
                     <label style="line-height:33px;">超级管理员</label>
@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label for="sitename">手机号码：</label>
+                    <label>手机号码：</label>
                 </div>
                 <div class="field">
                     <label style="line-height:33px;">18888888888</label>
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label for="sitename">身份证号码：</label>
+                    <label>身份证号码：</label>
                 </div>
                 <div class="field">
                     <label  style="line-height:33px;">588************000</label>

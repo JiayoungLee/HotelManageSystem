@@ -33,6 +33,7 @@
                 <th>单价</th>
                 <th>居住时间</th>
                 <th>总计</th>
+                <th>入住人</th>
 
                 <th>操作</th>
             </tr>
@@ -42,10 +43,11 @@
                 <td>99￥</td>
                 <td>10天</td>
                 <td>990￥</td>
+                <td>小李</td>
 
                 <td>
                     <div class="button-group">
-                        <a class="button border-red" href="javascript:void(0)" onclick="return del(1)"><span class="icon-trash-o"></span> 根据状态显示按钮</a>
+                        <a class="button border-red" href="javascript:void(0)" onclick="return del(1)"><span class="icon-trash-o"></span> 退房</a>
                         <a class="button border-red" href="info.html"><span class="icon-trash-o"></span> 详情</a>
                     </div>
                 </td>

@@ -13,7 +13,7 @@ public class Customer1 {
 
     private String cPassword;
 
-    private Integer roleId;
+    private String role;
 
     public Integer getcId() {
         return cId;
@@ -63,11 +63,11 @@ public class Customer1 {
         this.cPassword = cPassword;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

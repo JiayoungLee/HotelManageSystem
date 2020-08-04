@@ -32,26 +32,26 @@
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="enter1" domainObjectName="Enter1"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-        </table>
-        <table tableName="fee1" domainObjectName="Fee1"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-        </table>
-        <table tableName="floor1" domainObjectName="Floor1"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-        </table>
-        <table tableName="house1" domainObjectName="House1"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-        </table>
-        <table tableName="role1" domainObjectName="Role1"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" selectByExampleQueryId="false">
-        </table>
+        <!--<table tableName="enter1" domainObjectName="Enter1"-->
+               <!--enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="fee1" domainObjectName="Fee1"-->
+               <!--enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="floor1" domainObjectName="Floor1"-->
+               <!--enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="house1" domainObjectName="House1"-->
+               <!--enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="role1" domainObjectName="Role1"-->
+               <!--enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
         <table tableName="user1" domainObjectName="User1"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">

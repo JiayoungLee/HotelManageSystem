@@ -7,10 +7,10 @@
     <result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
     <result column="u_account" property="uAccount" jdbcType="VARCHAR" />
     <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
-    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    u_id, u_name, u_phone, u_account, u_password, role_id
+    u_id, u_name, u_phone, u_account, u_password, role
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,10 +24,10 @@
   </delete>
   <insert id="insert" parameterType="com.hqyj.pojo.User1" >
     insert into user1 (u_id, u_name, u_phone, 
-      u_account, u_password, role_id
+      u_account, u_password, role
       )
     values (#{uId,jdbcType=INTEGER}, #{uName,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR}, 
-      #{uAccount,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}
+      #{uAccount,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hqyj.pojo.User1" >
@@ -48,8 +48,8 @@
       <if test="uPassword != null" >
         u_password,
       </if>
-      <if test="roleId != null" >
-        role_id,
+      <if test="role != null" >
+        role,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -68,8 +68,8 @@
       <if test="uPassword != null" >
         #{uPassword,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null" >
-        #{roleId,jdbcType=INTEGER},
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -88,8 +88,8 @@
       <if test="uPassword != null" >
         u_password = #{uPassword,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null" >
-        role_id = #{roleId,jdbcType=INTEGER},
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
       </if>
     </set>
     where u_id = #{uId,jdbcType=INTEGER}
@@ -100,7 +100,7 @@
       u_phone = #{uPhone,jdbcType=VARCHAR},
       u_account = #{uAccount,jdbcType=VARCHAR},
       u_password = #{uPassword,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=INTEGER}
+      role = #{role,jdbcType=VARCHAR}
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
 </mapper>

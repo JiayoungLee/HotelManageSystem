@@ -27,7 +27,7 @@
         <a href="##" class="button button-little bg-blue">
             <span class="icon-wrench"></span> 清除缓存
         </a> &nbsp;&nbsp;
-        <a class="button button-little bg-red" href="login.html" style="margin-left: 114.119; margin-left: 850px;">
+        <a class="button button-little bg-red" href="login.html" style="margin-left: 114.119px; margin-left: 850px;">
             <span class="icon-power-off"></span> 退出登录
         </a>
     </div>
@@ -68,7 +68,7 @@
 <ul class="bread">
     <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
     <li><a href="##" id="a_leader_txt">网站信息</a></li>
-    <li><b>当前语言：</b><span style="color:red;">中文</php></span>
+    <li><b>当前语言：</b><span style="color:red;">中文</span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a> </li>
 </ul>
 <div class="admin">
