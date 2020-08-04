@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="jinru" unicode="&#59211;" d="M371.9 115.7l300.6 268.2-300.6 268.4v-149.8H111.8v-246.3h260.1v-140.5z m540.3-93.9c-0.4-49.4-42.9-85.7-91.7-85.8H338.9c-48.8 0.1-91.4 36.4-91.7 85.8V223.9h52.1v-202.1c0-16.7 15.9-33.5 39.7-33.6h481.6c23.8 0.1 39.6 17.1 39.7 33.6V746.2c0 16.7-15.9 33.5-39.7 33.6H338.9c-23.8-0.2-39.7-17.1-39.7-33.6v-213.4h-52.1V746.2c0.4 49.4 42.9 85.7 91.7 85.8h481.6c48.8-0.1 91.3-36.4 91.7-85.8v-724.5h0.1z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

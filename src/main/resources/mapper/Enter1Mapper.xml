@@ -174,4 +174,11 @@
       e_price = #{ePrice,jdbcType=DOUBLE}
     where e_id = #{eId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectLivingEnter" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from enter1
+    where e_id = #{eId,jdbcType=INTEGER}
+  </select>
 </mapper>

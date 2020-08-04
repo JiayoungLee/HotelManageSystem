@@ -12,4 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("uc")
 public class UserController {
 
+    @RequestMapping("checkOutPage.do")
+    public String checkOutPage(){
+
+        return "user/checkOutPage";
+    }
 }

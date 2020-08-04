@@ -14,4 +14,6 @@ public interface Enter1Mapper {
     int updateByPrimaryKeySelective(Enter1 record);
 
     int updateByPrimaryKey(Enter1 record);
+
+    Enter1 selectLivingEnter();
 }

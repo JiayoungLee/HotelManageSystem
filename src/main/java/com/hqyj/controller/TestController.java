@@ -16,6 +16,6 @@ public class TestController {
     //测试shiro
     @RequestMapping("firstShiro.do")
     public String firsShiro(){
-        return "login";
+        return "user/testIcon";
     }
 }

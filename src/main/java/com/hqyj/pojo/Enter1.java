@@ -27,6 +27,26 @@ public class Enter1 {
 
     private Double ePrice;
 
+    private Customer1 customer1;
+
+    private House1 house1;
+
+    public House1 getHouse1() {
+        return house1;
+    }
+
+    public void setHouse1(House1 house1) {
+        this.house1 = house1;
+    }
+
+    public Customer1 getCustomer1() {
+        return customer1;
+    }
+
+    public void setCustomer1(Customer1 customer1) {
+        this.customer1 = customer1;
+    }
+
     public Integer geteId() {
         return eId;
     }
@@ -121,5 +141,25 @@ public class Enter1 {
 
     public void setePrice(Double ePrice) {
         this.ePrice = ePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Enter1{" +
+                "eId=" + eId +
+                ", houseId=" + houseId +
+                ", customerId=" + customerId +
+                ", customerInfo='" + customerInfo + '\'' +
+                ", startTime=" + startTime +
+                ", endTimeEstimate=" + endTimeEstimate +
+                ", endTimeActual=" + endTimeActual +
+                ", orderCustomerId=" + orderCustomerId +
+                ", feeTotal=" + feeTotal +
+                ", userId=" + userId +
+                ", eState=" + eState +
+                ", ePrice=" + ePrice +
+                ", customer1=" + customer1 +
+                ", house1=" + house1 +
+                '}'+"\n";
     }
 }

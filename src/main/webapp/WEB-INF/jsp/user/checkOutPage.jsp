@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="/static/css/pintuer.css">
     <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="stylesheet" href="/static/css/font/iconfont.css">
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js/pintuer.js"></script>
 </head>
@@ -62,6 +63,87 @@
         </table>
     </div>
 </form>
+
+<!-- 客房登记模态框 -->
+<div class="modal fade" id="room_regist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="text-align: center">退房</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">房间号</label>
+                        <div class="col-sm-5">
+                            <input type="email" class="form-control" placeholder="1001">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">房型</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" placeholder="双床房">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">价格(天/元)</label>
+                        <div class="col-sm-3">
+                            <input type="password" class="form-control" placeholder="99.0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="width: 108px;">入住时间</label>
+                        <div class="col-sm-5">
+                            <input type="date" class="form-control" placeholder="2020-08-01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="width: 108px;">预定退房时间</label>
+                        <div class="col-sm-5">
+                            <input type="date" class="form-control" placeholder="2020-08-04">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">入住者信息</label>
+                        <div class="col-sm-10">
+                            <textarea type="password" class="form-control" placeholder="张山、李四、王五"
+                                      style="margin: 0px 3.32813px 0px 0px; height: 79px; width: 464px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">房间状态</label>
+                        <div class="col-sm-10">
+                            <input type="radio" name="state" placeholder="" checked>已预约&nbsp;&nbsp;
+                            <input type="radio" name="state" placeholder="">已入住&nbsp;&nbsp;
+                            <input type="radio" name="state" placeholder="">已退&nbsp;&nbsp;
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="width: 108px;">缴费金额(元)</label>
+                        <div class="col-sm-2">
+                            <input type="password" class="form-control" placeholder="50.0">
+                        </div>
+                        <label class="col-sm-2 control-label">预订人</label>
+                        <div class="col-sm-2">
+                            <input type="password" class="form-control" placeholder="张山">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">房间详情</label>
+                        <div class="col-sm-10">
+                            <textarea type="password" class="form-control" placeholder="空调、洗衣机等等"
+                                      style="margin: 0px 5.32813px 0px 0px; height: 98px; width: 464px;"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
 
     function del(id){
