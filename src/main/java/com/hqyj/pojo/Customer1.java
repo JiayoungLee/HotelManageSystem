@@ -70,4 +70,17 @@ public class Customer1 {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "Customer1{" +
+                "cId=" + cId +
+                ", cName='" + cName + '\'' +
+                ", cCard='" + cCard + '\'' +
+                ", cPhone='" + cPhone + '\'' +
+                ", cAccount='" + cAccount + '\'' +
+                ", cPassword='" + cPassword + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

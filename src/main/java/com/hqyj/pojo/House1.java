@@ -80,4 +80,18 @@ public class House1 {
     public void sethInfo(String hInfo) {
         this.hInfo = hInfo;
     }
+
+    @Override
+    public String toString() {
+        return "House1{" +
+                "hId=" + hId +
+                ", hName='" + hName + '\'' +
+                ", hAmount=" + hAmount +
+                ", hPrice=" + hPrice +
+                ", floorId=" + floorId +
+                ", hState=" + hState +
+                ", customerId=" + customerId +
+                ", hInfo='" + hInfo + '\'' +
+                '}';
+    }
 }

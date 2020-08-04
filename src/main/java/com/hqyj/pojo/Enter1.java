@@ -1,8 +1,9 @@
 package com.hqyj.pojo;
 
 import java.util.Date;
+import java.util.List;
 
-public class Enter1 {
+public class Enter1 extends MyPage{
     private Integer eId;
 
     private Integer houseId;
@@ -30,6 +31,16 @@ public class Enter1 {
     private Customer1 customer1;
 
     private House1 house1;
+
+    private List<Fee1> fee1List;
+
+    public List<Fee1> getFee1List() {
+        return fee1List;
+    }
+
+    public void setFee1List(List<Fee1> fee1List) {
+        this.fee1List = fee1List;
+    }
 
     public House1 getHouse1() {
         return house1;
@@ -160,6 +171,7 @@ public class Enter1 {
                 ", ePrice=" + ePrice +
                 ", customer1=" + customer1 +
                 ", house1=" + house1 +
+                ", fee1=" + fee1List +
                 '}'+"\n";
     }
 }

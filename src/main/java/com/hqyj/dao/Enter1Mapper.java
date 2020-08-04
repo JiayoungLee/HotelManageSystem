@@ -2,6 +2,8 @@ package com.hqyj.dao;
 
 import com.hqyj.pojo.Enter1;
 
+import java.util.List;
+
 public interface Enter1Mapper {
     int deleteByPrimaryKey(Integer eId);
 
@@ -15,5 +17,5 @@ public interface Enter1Mapper {
 
     int updateByPrimaryKey(Enter1 record);
 
-    Enter1 selectLivingEnter();
+    List<Enter1> selectLivingEnter();
 }

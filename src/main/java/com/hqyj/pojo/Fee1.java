@@ -80,4 +80,18 @@ public class Fee1 {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Fee1{" +
+                "fId=" + fId +
+                ", enterId=" + enterId +
+                ", direct=" + direct +
+                ", coustomerId=" + coustomerId +
+                ", money=" + money +
+                ", houseId='" + houseId + '\'' +
+                ", description='" + description + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
 }

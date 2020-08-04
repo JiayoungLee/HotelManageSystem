@@ -16,7 +16,7 @@
     <script src="/static/js/pintuer.js"></script>
 </head>
 
-<body>
+<body onload="load(1)">
 <form method="post" action="">
     <div class="panel admin-panel">
         <div class="panel-head"><strong class="icon-reorder"> 订单</strong></div>
@@ -38,6 +38,7 @@
 
                 <th>操作</th>
             </tr>
+            
             <tr>
                 <td>1001</td>
                 <td>双床房</td>
@@ -64,12 +65,12 @@
     </div>
 </form>
 
-<!-- 客房登记模态框 -->
+<!-- 已入住客房详情模态框 -->
 <div class="modal fade" id="room_regist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" style="text-align: center">退房</h3>
+                <h3 class="modal-title" style="text-align: center">已入住客房详情</h3>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
@@ -145,6 +146,20 @@
     </div>
 </div>
 <script type="text/javascript">
+    
+    function load(p) {
+        //发送ajax请求
+        $.ajax({
+            url: "${pageContext.request.contextPath }/uc/checkOutPage.do",
+            type: "get",     //请求方式
+            data: {"page": p},
+            dataType: "json",       //返回的数据类型 对象用json；字符串和数字用text
+            sucess:function (data) {
+
+            }
+        })
+        
+    }
 
     function del(id){
         if(confirm("您确定要删除吗?")){
