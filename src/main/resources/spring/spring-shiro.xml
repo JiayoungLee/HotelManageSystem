@@ -147,6 +147,7 @@
 
                 /uc/toCheckOutPage.do = anon
                 /uc/checkOutPage.ajax = anon
+                /uc/selectLivingDetailByEId.ajax = anon
 
 
                 /pc/user.do = roles[user]

@@ -33,16 +33,14 @@
             <result column="c_password" jdbcType="VARCHAR" property="cPassword"/>
             <result column="role" jdbcType="VARCHAR" property="role"/>
         </association>
-        <collection property="fee1List" ofType="com.hqyj.pojo.Fee1">
-            <id column="f_id" jdbcType="INTEGER" property="fId"/>
-            <result column="enter_id" jdbcType="INTEGER" property="enterId"/>
-            <result column="direct" jdbcType="INTEGER" property="direct"/>
-            <result column="coustomer_id" jdbcType="INTEGER" property="coustomerId"/>
-            <result column="money" jdbcType="DOUBLE" property="money"/>
-            <result column="house_id" jdbcType="VARCHAR" property="houseId"/>
-            <result column="description" jdbcType="VARCHAR" property="description"/>
-            <result column="user_id" jdbcType="INTEGER" property="userId"/>
-        </collection>
+        <association property="user1" javaType="com.hqyj.pojo.User1">
+            <id column="u_id" jdbcType="INTEGER" property="uId"/>
+            <result column="u_name" jdbcType="VARCHAR" property="uName"/>
+            <result column="u_phone" jdbcType="VARCHAR" property="uPhone"/>
+            <result column="u_account" jdbcType="VARCHAR" property="uAccount"/>
+            <result column="u_password" jdbcType="VARCHAR" property="uPassword"/>
+            <result column="role" jdbcType="VARCHAR" property="role"/>
+        </association>
     </resultMap>
     <sql id="Base_Column_List">
     e_id, house_id, customer_id, customer_info, start_time, end_time_estimate, end_time_actual, 
@@ -205,46 +203,76 @@
   </update>
 
     <select id="selectLivingEnter" resultMap="BaseResultMap">
-   SELECT
-customer1.c_id,
-customer1.c_name,
-customer1.c_card,
-customer1.c_phone,
-customer1.c_account,
-customer1.c_password,
-customer1.role,
-enter1.e_id,
-enter1.house_id,
-enter1.customer_id,
-enter1.customer_info,
-enter1.start_time,
-enter1.end_time_estimate,
-enter1.end_time_actual,
-enter1.order_customer_id,
-enter1.fee_total,
-enter1.user_id,
-enter1.e_state,
-enter1.e_price,
-house1.h_id,
-house1.h_name,
-house1.h_amount,
-house1.h_price,
-house1.floor_id,
-house1.h_state,
-house1.customer_id,
-house1.h_info,
-fee1.f_id,
-fee1.enter_id,
-fee1.direct,
-fee1.coustomer_id,
-fee1.money,
-fee1.house_id,
-fee1.description,
-fee1.user_id
-FROM
-enter1
-INNER JOIN customer1 ON customer1.c_id = enter1.customer_id
-INNER JOIN house1 ON enter1.house_id = house1.h_id
-INNER JOIN fee1 ON enter1.e_id = fee1.enter_id where enter1.e_state = 2
+        SELECT
+        customer1.c_id,
+        customer1.c_name,
+        customer1.c_card,
+        customer1.c_phone,
+        customer1.c_account,
+        customer1.c_password,
+        customer1.role,
+        enter1.e_id,
+        enter1.house_id,
+        enter1.customer_id,
+        enter1.customer_info,
+        enter1.start_time,
+        enter1.end_time_estimate,
+        enter1.end_time_actual,
+        enter1.order_customer_id,
+        enter1.fee_total,
+        enter1.user_id,
+        enter1.e_state,
+        enter1.e_price,
+        house1.h_id,
+        house1.h_name,
+        house1.h_amount,
+        house1.h_price,
+        house1.floor_id,
+        house1.h_state,
+        house1.customer_id,
+        house1.h_info
+        FROM
+        enter1
+        INNER JOIN customer1 ON customer1.c_id = enter1.customer_id
+        INNER JOIN house1 ON enter1.house_id = house1.h_id
+        WHERE enter1.e_state=2
+  </select>
+
+
+    <select id="selectLivingDetailByEId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        customer1.c_id,
+        customer1.c_name,
+        customer1.c_phone,
+        customer1.role,
+        enter1.e_id,
+        enter1.house_id,
+        enter1.customer_id,
+        enter1.customer_info,
+        enter1.start_time,
+        enter1.end_time_estimate,
+        enter1.end_time_actual,
+        enter1.order_customer_id,
+        enter1.fee_total,
+        enter1.user_id,
+        enter1.e_state,
+        enter1.e_price,
+        house1.h_id,
+        house1.h_name,
+        house1.h_amount,
+        house1.h_price,
+        house1.floor_id,
+        house1.customer_id,
+        house1.h_info,
+        user1.u_id,
+        user1.u_name,
+        user1.u_phone,
+        user1.role
+        FROM
+        customer1
+        INNER JOIN enter1 ON customer1.c_id = enter1.customer_id
+        INNER JOIN house1 ON enter1.house_id = house1.h_id
+        INNER JOIN user1 ON enter1.user_id = user1.u_id
+        WHERE enter1.e_state=2 and enter1.e_id=#{eId}
   </select>
 </mapper>

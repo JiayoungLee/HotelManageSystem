@@ -6,6 +6,7 @@ import com.hqyj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +46,17 @@ public class UserController {
 
         HashMap<String, Object> map = userService.checkOutPage(enter1);
 
+        return map;
+    }
+
+    @RequestMapping(value = "selectLivingDetailByEId.ajax",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public HashMap selectLivingDetailByEId(int eId) {
+        //System.err.println("-----前端来的eId---"+eId);
+        Enter1 enter1 = userService.selectLivingDetailByEId(eId);
+        HashMap map = new HashMap();
+        System.out.println("-------1、enter--------\n"+enter1);
+        map.put("enter1",enter1);
         return map;
     }
 }

@@ -34,14 +34,15 @@ public class Enter1 extends MyPage{
 
     private House1 house1;
 
-    private Fee1 fee1List;
+    private User1 user1;
 
-    public Fee1 getFee1List() {
-        return fee1List;
+
+    public User1 getUser1() {
+        return user1;
     }
 
-    public void setFee1List(Fee1 fee1List) {
-        this.fee1List = fee1List;
+    public void setUser1(User1 user1) {
+        this.user1 = user1;
     }
 
     public House1 getHouse1() {
@@ -110,20 +111,40 @@ public class Enter1 extends MyPage{
         }
     }
 
-    public Date getEndTimeEstimate() {
-        return endTimeEstimate;
+    public String getEndTimeEstimate() {
+        if (this.endTimeEstimate!=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return simpleDateFormat.format(this.endTimeEstimate);
+        }
+        return "";
     }
 
-    public void setEndTimeEstimate(Date endTimeEstimate) {
-        this.endTimeEstimate = endTimeEstimate;
+    public void setEndTimeEstimate(String endTimeEstimate) throws ParseException {
+        if (endTimeEstimate!=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date parseTime = simpleDateFormat.parse(endTimeEstimate);
+            this.endTimeEstimate = parseTime;
+        }else {
+            this.endTimeEstimate = new Date();
+        }
     }
 
-    public Date getEndTimeActual() {
-        return endTimeActual;
+    public String getEndTimeActual() {
+        if (this.endTimeActual!=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return simpleDateFormat.format(this.endTimeActual);
+        }
+        return "";
     }
 
-    public void setEndTimeActual(Date endTimeActual) {
-        this.endTimeActual = endTimeActual;
+    public void setEndTimeActual(String endTimeActual) throws ParseException {
+        if (endTimeActual!=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date parseTime = simpleDateFormat.parse(endTimeActual);
+            this.endTimeActual = parseTime;
+        }else {
+            this.endTimeActual = new Date();
+        }
     }
 
     public Integer getOrderCustomerId() {
@@ -183,7 +204,6 @@ public class Enter1 extends MyPage{
                 ", ePrice=" + ePrice +
                 ", customer1=" + customer1 +
                 ", house1=" + house1 +
-                ", fee1=" + fee1List +
                 '}'+"\n";
     }
 }

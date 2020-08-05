@@ -18,4 +18,6 @@ public interface Enter1Mapper {
     int updateByPrimaryKey(Enter1 record);
 
     List<Enter1> selectLivingEnter();
+
+    Enter1 selectLivingDetailByEId(Integer eId);
 }

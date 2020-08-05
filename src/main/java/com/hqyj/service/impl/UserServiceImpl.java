@@ -31,6 +31,8 @@ public class UserServiceImpl implements UserService {
         PageHelper.startPage(enter1.getPage(),enter1.getRow());
 
         List<Enter1> enter1List = enter1Mapper.selectLivingEnter();
+//        System.out.println("--------enterList----------");
+//        System.out.println(enter1List);
 
         PageInfo<Enter1> pageInfo = new PageInfo<>(enter1List,2);
 
@@ -50,5 +52,11 @@ public class UserServiceImpl implements UserService {
         map.put("navigatepageNums", pageInfo.getNavigatepageNums());
 
         return map;
+    }
+
+    @Override
+    public Enter1 selectLivingDetailByEId(int eId) {
+        Enter1 enter1 = enter1Mapper.selectLivingDetailByEId(eId);
+        return enter1;
     }
 }
