@@ -60,4 +60,16 @@ public class User1 {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "User1{" +
+                "uId=" + uId +
+                ", uName='" + uName + '\'' +
+                ", uPhone='" + uPhone + '\'' +
+                ", uAccount='" + uAccount + '\'' +
+                ", uPassword='" + uPassword + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

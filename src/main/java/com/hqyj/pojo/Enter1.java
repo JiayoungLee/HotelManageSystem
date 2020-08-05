@@ -204,6 +204,7 @@ public class Enter1 extends MyPage{
                 ", ePrice=" + ePrice +
                 ", customer1=" + customer1 +
                 ", house1=" + house1 +
-                '}'+"\n";
+                ", user1=" + user1 +
+                '}';
     }
 }

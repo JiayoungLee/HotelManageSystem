@@ -66,6 +66,23 @@
     <button type="button" class="btn btn-success btn-sm" onclick="lastPage()">尾页</button>
 </div>
 
+
+<div class="modal fade" id="lessCompensation" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--头部-->
+            <div class="modal-header" style="background-color: green; height: 20px;">
+                <h3 class="modal-title" style="text-align: center">客人入住费用一经超过已缴费</h3>
+            </div>
+            <div class="modal-body">
+                <span></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <!-- 已入住客房详情模态框 -->
 <div class="modal fade" id="room_regist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -79,43 +96,43 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房间号</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="hName" value="">
+                            <input type="text" class="form-control" id="hName" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">楼层</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="floorId" value="">
+                            <input type="text" class="form-control" id="floorId" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房型</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="hAmount" value="">
+                            <input type="text" class="form-control" id="hAmount" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">价格(天/元)</label>
                         <div class="col-sm-3">
-                            <input type="password" class="form-control" id="hPrice" value="">
+                            <input type="text" class="form-control" id="hPrice" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" style="width: 108px;">入住时间</label>
                         <div class="col-sm-5">
-                            <input type="date" class="form-control" id="startTime" value="">
+                            <input type="date" class="form-control" id="startTime" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" style="width: 108px;">预定退房时间</label>
                         <div class="col-sm-5">
-                            <input type="date" class="form-control" id="endTimeEstimate" value="">
+                            <input type="date" class="form-control" id="endTimeEstimate" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">超期(天)</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="chao" value="">
+                            <input type="text" class="form-control" id="chao" value="" readonly>
                         </div>
                     </div>
 
@@ -128,37 +145,45 @@
                     <%--</div>--%>
                     <%--</div>--%>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" style="width: 108px;">已缴费金额(元)</label>
+                        <label class="col-sm-2 control-label" style="width: 108px;">现总计(元)</label>
                         <div class="col-sm-2">
-                            <input type="password" class="form-control" id="feeTotal" value="">
+                            <input type="text" class="form-control" id="spended" value="" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" style="width: 108px;">已缴费(元)</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="feeTotal" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房间详情</label>
                         <div class="col-sm-10">
-                            <textarea type="password" class="form-control" id="hInfo"
+                            <textarea type="password" class="form-control" id="hInfo" readonly
                                       style="margin: 0px 5.32813px 0px 0px; height: 98px; width: 464px;"></textarea>
                         </div>
                     </div>
+
+
                     <br>
                     <hr>
                     <h4 class="modal-title" style="text-align: center">顾客信息</h4>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">订房人</label>
                         <div class="col-sm-2">
-                            <input type="password" class="form-control" id="cName" value="">
+                            <input type="text" class="form-control" id="cName" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" style="width: 108px;">手机号</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="cPhone" value="">
+                            <input type="text" class="form-control" id="cPhone" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">其他入住者信息</label>
                         <div class="col-sm-10">
-                            <textarea type="password" class="form-control" id="customerInfo"
+                            <textarea type="password" class="form-control" id="customerInfo" readonly
                                       style="margin: 0px 3.32813px 0px 0px; height: 79px; width: 464px;"></textarea>
                         </div>
                     </div>
@@ -169,13 +194,13 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">操作人</label>
                         <div class="col-sm-2">
-                            <input type="password" class="form-control" id="uName" value="">
+                            <input type="text" class="form-control" id="uName" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">电话</label>
                         <div class="col-sm-5">
-                            <input type="password" class="form-control" id="uPhone" value="">
+                            <input type="text" class="form-control" id="uPhone" value="" readonly>
                         </div>
                     </div>
 
@@ -336,17 +361,32 @@
                 $("#startTime").val(data.enter1.startTime);
                 $("#endTimeEstimate").val(data.enter1.endTimeEstimate);
 
-                $("#chao").val();
-                $("#feeTotal").val();
-                $("#hInfo").val();
+                //超期天数
+                var nowDate1 = new Date();
+                var livedDays = GetDateDiff(data.enter1.startTime, nowDate1);
+                var liveDaysEsti = GetDateDiff(data.enter1.startTime, data.enter1.endTimeEstimate);
+                var chao = 0;
+                if (livedDays > liveDaysEsti) {
+                    var chao = livedDays - liveDaysEsti;
+                }
+                //现总花费
+                var totalCost = livedDays * data.enter1.house1.hPrice;
+                totalCost = totalCost.toFixed(2);
+
+                $("#chao").val(chao);
+                $("#spended").val(totalCost);
+                $("#feeTotal").val(data.enter1.feeTotal);
+
+                //data.enter1.house1.hInfo
+                $("#hInfo").val(data.enter1.house1.hInfo);
 
                 $("#cName").val(data.enter1.customer1.cName);
                 $("#cPhone").val(data.enter1.customer1.cPhone);
-
-                $("#customerInfo").val();
+                //data.enter1.customer1.customerInfo
+                $("#customerInfo").val(data.enter1.customerInfo);
 
                 $("#uName").val(data.enter1.user1.uName);
-                $("#cPhone").val(data.enter1.user1.cPhone);
+                $("#uPhone").val(data.enter1.user1.uPhone);
 
 
                 $("#room_regist_modal").modal("show");
@@ -358,39 +398,49 @@
         })
     }
 
+    function checkOut(obj) {
 
-    function del(id) {
-        if (confirm("您确定要删除吗?")) {
+        //获得当前入住表id
+        var eId = $(obj).parent().parent().find('td').eq(8).text();
+        
+        if (confirm("确定要退房吗")){
+            $.ajax({
+                url: "${pageContext.request.contextPath}/uc/selectLivingDetailByEId.ajax",
+                type: "get",
+                data: {"eId": eId},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data.enter1.eId + "-------" + data.enter1.house1.hName);
+                    
 
-        }
+                    //超期天数
+                    var nowDate1 = new Date();
+                    var livedDays = GetDateDiff(data.enter1.startTime, nowDate1);
+                    var liveDaysEsti = GetDateDiff(data.enter1.startTime, data.enter1.endTimeEstimate);
+                    var chao = 0;
+                    if (livedDays > liveDaysEsti) {
+                        var chao = livedDays - liveDaysEsti;
+                    }
+                    //现总花费
+                    var totalCost = livedDays * data.enter1.house1.hPrice;
+                    totalCost = totalCost.toFixed(2);
+                    
+                    //已缴费
+                    var feeTotal=data.enter1.feeTotal
+                    if (totalCost>feeTotal){
+                        $("#room_regist_modal").modal("show");
+                    }
+                    
+                    $("#room_regist_modal").modal("show");
+
+                },
+                error: function () {
+                    alert("响应selectLivingDetailByEId.ajax失败")
+                }
+            })
+        } 
+
     }
 
-    $("#checkall").click(function () {
-        $("input[name='id[]']").each(function () {
-            if (this.checked) {
-                this.checked = false;
-            }
-            else {
-                this.checked = true;
-            }
-        });
-    })
-
-    function DelSelect() {
-        var Checkbox = false;
-        $("input[name='id[]']").each(function () {
-            if (this.checked == true) {
-                Checkbox = true;
-            }
-        });
-        if (Checkbox) {
-            var t = confirm("您确认要删除选中的内容吗？");
-            if (t == false) return false;
-        }
-        else {
-            alert("请选择您要删除的内容!");
-            return false;
-        }
-    }
 
 </script>
