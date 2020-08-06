@@ -2,6 +2,7 @@ package com.hqyj.dao;
 
 import com.hqyj.pojo.Enter1;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface Enter1Mapper {
@@ -20,4 +21,6 @@ public interface Enter1Mapper {
     List<Enter1> selectLivingEnter();
 
     Enter1 selectLivingDetailByEId(Integer eId);
+
+    int checkOutEnter(HashMap map);
 }

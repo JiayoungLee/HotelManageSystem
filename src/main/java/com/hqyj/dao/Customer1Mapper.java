@@ -14,4 +14,6 @@ public interface Customer1Mapper {
     int updateByPrimaryKeySelective(Customer1 record);
 
     int updateByPrimaryKey(Customer1 record);
+
+    Customer1 selectByCustomer(int cId) ;
 }

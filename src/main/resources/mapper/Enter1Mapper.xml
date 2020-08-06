@@ -275,4 +275,12 @@
         INNER JOIN user1 ON enter1.user_id = user1.u_id
         WHERE enter1.e_state=2 and enter1.e_id=#{eId}
   </select>
+
+    <update id="checkOutEnter" parameterType="java.util.HashMap">
+    update enter1
+    set fee_total = #{feeTotal},
+      e_state = 3
+    where e_id = #{eId}
+  </update>
+
 </mapper>

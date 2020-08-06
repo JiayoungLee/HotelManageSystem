@@ -19,14 +19,15 @@
 <div class="panel admin-panel">
     <div class="panel-head"><strong><span class="icon-key"></span> 个人详情</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" >
+        <form method="post" class="form-x" action="/cc/updatePassword.do" >
+
             <div class="form-group">
                 <div class="label">
                     <label hidden="hidden">：用户Id</label>
                 </div>
                 <div class="field">
                     <label style="line-height:33px;">
-                        <input  hidden="hidden" type="text" name="cId" value="${customer1.cId}">
+                        <input  hidden="hidden" type="text" name="cId" value="${customer2.cId}">
                     </label>
                 </div>
             </div>
@@ -36,40 +37,28 @@
                 </div>
                 <div class="field">
                     <label style="line-height:33px;">
-                        <input type="text" name="cAccount" value="${customer1.cAccount}">
+                        <input type="text" name="cAccount" value="${customer2.cAccount}">
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label>姓名：</label>
+                    <label>密码：</label>
                 </div>
                 <div class="field">
-                    <label style="line-height:33px;"><input type="text"  name="cName" value="${customer1.cName}"></label>
+                    <label style="line-height:33px;">
+                        <input type="password" name="cPassword" value="${customer2.cPassword}">
+                    </label>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="label">
-                    <label>手机号码：</label>
-                </div>
-                <div class="field">
-                    <label style="line-height:33px;"><input type="text" name="cPhone" value="${customer1.cPhone}"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="label">
-                    <label>身份证号码：</label>
-                </div>
-                <div class="field">
-                    <label  style="line-height:33px;"><input type="text" name="cCard" value="${customer1.cCard}"></label>
-                </div>
-            </div>
+
+
 
             <div class="form-group">
                 <div class="field" style=" margin-left: 30px;">
 
-                    <a class="button border-blue icon-edit" href="/cc/selectBycId.do?cId=${customer1.cId}" > 修改信息</a>
-                    <a class="button border-blue icon-edit" href="/cc/Password.do?cId=${customer1.cId}" > 修改密码</a>
+                    <span style="color:red">${info}</span>
+                    <button class="button border-blue icon-edit" type="submit"> 确认</button>
 
                 </div>
             </div>
@@ -78,15 +67,4 @@
 </div>
 </body>
 </html>
-<script>
-     $(function () {
-           // alert(1111);
-         $.ajax({
-             url:"cc/showCustomer.do",
-             type:"post",
-             dataType:"text",
-             data:{}
-         })
-     })
-</script>
 

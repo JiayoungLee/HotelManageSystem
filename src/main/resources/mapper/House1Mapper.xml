@@ -125,4 +125,48 @@
       h_info = #{hInfo,jdbcType=VARCHAR}
     where h_id = #{hId,jdbcType=INTEGER}
   </update>
+
+  <!--李佳阳开始-->
+  <!--退房修改房间状态-->
+  <update id="checkOutHouse" >
+    update house1
+    set h_state =1
+    where h_id = #{hId,jdbcType=INTEGER}
+  </update>
+  <!--李佳阳结束-->
+
+<!--陈鸿开始-->
+  <!--查询分页-->
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.hqyj.pojo.House1" >
+    select
+    <include refid="Base_Column_List" />
+    from house1
+    <trim prefix=" where" suffix=" " suffixOverrides="and">
+      <if test="floorId!='' and floorId!=null">
+        floor_id = #{floorId,jdbcType=INTEGER} and
+      </if>
+      <if test="hAmount!='' and hAmount!=null">
+        h_amount=#{hAmount,jdbcType=INTEGER} and
+      </if>
+      <if test="hState!='' and hState!=null">
+        h_state=#{hState,jdbcType=INTEGER} and
+      </if>
+      <if test="hName!='' and hName!=null">
+        h_name=#{hName,jdbcType=VARCHAR} and
+      </if>
+    </trim>
+  </select>
+
+  <!--批量删除-->
+  <delete id="delAll">
+    delete from house1
+    <trim prefix=" where">
+      h_id in (
+      <foreach collection="list" item="x" separator=",">
+        #{x}
+      </foreach>
+      )
+    </trim>
+  </delete>
+  <!--陈鸿结束-->
 </mapper>

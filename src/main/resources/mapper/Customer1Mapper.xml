@@ -114,4 +114,13 @@
       role = #{role,jdbcType=VARCHAR}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
+
+    <!--符鸿夷开始-->
+  <select id="selectByCustomer" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from customer1 where c_id = #{cId}
+
+  </select>
+    <!--符鸿夷结束-->
 </mapper>

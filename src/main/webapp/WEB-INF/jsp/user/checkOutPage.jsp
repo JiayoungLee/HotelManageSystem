@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/static/css/pintuer.css">
     <link rel="stylesheet" href="/static/css/admin.css">
     <link rel="stylesheet" href="/static/css/font/iconfont.css">
-    <link rel="stylesheet" href="/static/css/font/iconfont.css">
 
     <script src="/static/js/jquery-3.5.0.min.js"></script>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
@@ -67,21 +66,59 @@
 </div>
 
 
-<div class="modal fade" id="lessCompensation" style="top:200px">
-    <div class="modal-dialog">
+<%--少补 模态框--%>
+<div class="modal fade" id="lessCompensation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <!--头部-->
-            <div class="modal-header" style="background-color: green; height: 20px;">
-                <h3 class="modal-title" style="text-align: center">客人入住费用一经超过已缴费</h3>
+            <div class="modal-header">
+                <h3 class="modal-title" style="text-align: center">客人入住费用已经超过已缴费额</h3>
             </div>
             <div class="modal-body">
-                <span></span>
-            </div>
+                <form class="form-horizontal">
 
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">多退少补：少了￥</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="lessMoney" value="" readonly>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="settle()">已结算，确认退房</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
         </div>
     </div>
 </div>
 
+<%--多退 模态框--%>
+<div class="modal fade" id="moreRefund" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="text-align: center">客人已缴费额已经超过入住费用</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">多退少补：多了￥</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="moreMoney" value="" readonly>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="settle()">已结算，确认退房</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- 已入住客房详情模态框 -->
 <div class="modal fade" id="room_regist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -398,12 +435,16 @@
         })
     }
 
+    //选定要退房的入住表id、对应的house id、已缴费总额
+    var settleEId;
+    var settleHId;
+    var finalFee;
     function checkOut(obj) {
 
         //获得当前入住表id
         var eId = $(obj).parent().parent().find('td').eq(8).text();
-        
-        if (confirm("确定要退房吗")){
+
+        if (confirm("确定要退房吗")) {
             $.ajax({
                 url: "${pageContext.request.contextPath}/uc/selectLivingDetailByEId.ajax",
                 type: "get",
@@ -411,7 +452,10 @@
                 dataType: "json",
                 success: function (data) {
                     console.log(data.enter1.eId + "-------" + data.enter1.house1.hName);
-                    
+
+                    //给选定要退房的入住表id赋值
+                    settleEId=data.enter1.eId;
+                    settleHId=data.enter1.house1.hId;
 
                     //超期天数
                     var nowDate1 = new Date();
@@ -424,21 +468,57 @@
                     //现总花费
                     var totalCost = livedDays * data.enter1.house1.hPrice;
                     totalCost = totalCost.toFixed(2);
-                    
+
                     //已缴费
-                    var feeTotal=data.enter1.feeTotal
-                    if (totalCost>feeTotal){
-                        $("#room_regist_modal").modal("show");
+                    var feeTotal = data.enter1.feeTotal
+                    //最后的总花费
+                    finalFee = totalCost;
+                    if (totalCost > feeTotal) {
+                        $("#lessMoney").val(totalCost - feeTotal);
+                        $("#lessCompensation").modal("show");
+                    }else {
+                        $("#moreMoney").val( feeTotal-totalCost);
+                        $("#moreRefund").modal("show");
                     }
-                    
-                    $("#room_regist_modal").modal("show");
+
 
                 },
                 error: function () {
                     alert("响应selectLivingDetailByEId.ajax失败")
                 }
             })
-        } 
+        }
+
+    }
+
+
+    function settle() {
+        // alert(settleEId);
+        // alert(settleHId);
+        $('#lessCompensation').modal('hide');
+        $('#moreRefund').modal('hide');
+
+        if (confirm("确定已经结算好用费了吗")) {
+            $.ajax({
+                url: "${pageContext.request.contextPath}/uc/checkOut.ajax",
+                type: "get",
+                data: {
+                    "eId": settleEId,
+                    "hId":settleHId,
+                    "feeTotal":finalFee
+                },
+                dataType: "json",
+                success:function (data) {
+                    // layer.msg(data.info, {icon: 1});
+                    alert(data.info);
+                    window.location.href = "${pageContext.request.contextPath}/uc/toCheckOutPage.do";
+                },
+                error:function () {
+                    alert("checkOut.ajax失败")
+                }
+            })
+        }
+
 
     }
 

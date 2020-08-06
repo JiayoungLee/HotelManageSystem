@@ -19,7 +19,8 @@
 <div class="panel admin-panel">
     <div class="panel-head"><strong><span class="icon-key"></span> 个人详情</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" >
+        <form method="post" class="form-x" action="/cc/updateCustomer.do" id="test01">
+
             <div class="form-group">
                 <div class="label">
                     <label hidden="hidden">：用户Id</label>
@@ -68,8 +69,8 @@
             <div class="form-group">
                 <div class="field" style=" margin-left: 30px;">
 
-                    <a class="button border-blue icon-edit" href="/cc/selectBycId.do?cId=${customer1.cId}" > 修改信息</a>
-                    <a class="button border-blue icon-edit" href="/cc/Password.do?cId=${customer1.cId}" > 修改密码</a>
+                    <span style="color:red">${info}</span>
+                    <button class="button border-blue icon-edit" type="submit"> 保存修改</button>
 
                 </div>
             </div>
@@ -78,15 +79,4 @@
 </div>
 </body>
 </html>
-<script>
-     $(function () {
-           // alert(1111);
-         $.ajax({
-             url:"cc/showCustomer.do",
-             type:"post",
-             dataType:"text",
-             data:{}
-         })
-     })
-</script>
 

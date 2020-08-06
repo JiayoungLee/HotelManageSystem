@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="/static/css/pintuer.css">
     <link rel="stylesheet" href="/static/css/admin.css">
-    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery-3.5.0.min.js"></script>
     <script src="/static/js/pintuer.js"></script>
 </head>
 
@@ -39,16 +39,16 @@
         <li><a href="roomSelectPage.html" target="right"><span class="icon-caret-right"></span>客房查询</a></li>
 
         <li><a href="orderPage.html" target="right"><span class="icon-caret-right"></span>预定空间</a></li>
-        <li><a href="customerPersonalPage.html" target="right"><span class="icon-caret-right"></span>个人信息</a></li>
+        <li><a href="/cc/customerPersom.do" target="right"><span class="icon-caret-right"></span>个人信息</a></li>
 
 
 
     </ul>
     <h2><span class="icon-pencil-square-o"></span>工作人员</h2>
     <ul>
-        <li><a href="roomManagerPage.html" target="right"><span class="icon-caret-right"></span>客房管理</a></li>
+        <li><a href="/uc/houseList.do" target="right"><span class="icon-caret-right"></span>客房管理</a></li>
         <li><a href="enterPage.html" target="right"><span class="icon-caret-right"></span>入住</a></li>
-        <li><a href="checkOutPage.html" target="right"><span class="icon-caret-right"></span>退房</a></li>
+        <li><a href="/uc/toCheckOutPage.do" target="right"><span class="icon-caret-right"></span>退房</a></li>
     </ul>
 
 </div>
