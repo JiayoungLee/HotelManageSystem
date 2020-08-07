@@ -103,4 +103,15 @@
       role = #{role,jdbcType=VARCHAR}
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
+
+  <!--王静开始-->
+  <select id="selectByPersonNameAndPersonPassword" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user1
+    where u_account = #{username}
+  </select>
+
+  <!--王静结束-->
+
 </mapper>

@@ -7,108 +7,40 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>订单详情</title>
+    <title>退费表单</title>
 
     <link rel="stylesheet" href="/static/css/pintuer.css">
     <link rel="stylesheet" href="/static/css/admin.css">
-    <script src="/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery-3.5.0.min.js"></script>
     <script src="/static/js/pintuer.js"></script>
 </head>
 
 <body>
 <div class="panel admin-panel">
-    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 订单详情</strong></div>
+    <div class="panel-head"><strong><span class="icon-pencil-square-o"></span>信息通知</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" action="">
-            <div class="form-group">
-                <div class="label">
-                    <label>房型</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input" name="stitle" value="" style="width:25%; float:left;"/>
-                    <div class="tips"></div>
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                <div class="label">
-                    <label>预定退房时间</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input" name="surl" value="" style="width:25%; float:left;"/>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="label">
-                    <label>状态：</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input" name="state" value="" style="width:25%; float:left;"/>
-                    <div class="tips"></div>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="label">
-                    <label>房间描述：</label>
-                </div>
-                <div class="field">
-                    <textarea class="input" name="skeywords" style="float: left; margin: 0px; width: 508px; height: 168px;"></textarea>
-                    <div class="tips"></div>
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                <div class="label">
-                    <label>订房人：</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input" name="s_name" value="" style="width:25%; float:left;"/>
-                    <div class="tips"></div>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="label">
-                    <label>手机：</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input" name="s_phone" value="" style="width:25%; float:left;"/>
-                    <div class="tips"></div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="label">
-                    <label>费用：</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input" name="s_phone" value="" style="width:25%; float:left;"/>
-                    <div class="tips"></div>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="label">
-                    <label></label>
-                </div>
-                <div class="field">
-                    <button class="button bg-main icon-check-square-o" type="submit"> 取消订单</button>
-                    <button class="button bg-main icon-check-square-o" type="submit"> 返回</button>
-                </div>
-            </div>
-        </form>
+        <table class="table">
+            <tbody>
+            <h1>订单取消成功，正在结算清单......</h1>
+            <br><br><hr>
+            <center>
+                <button class="button bg-main icon-check-square-o" onclick="look()"> 点击查看退订清单</button>
+            </center>
+            <hr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+<script>
+    var mm = "${enterId3}";
+    //alert("mm================="+mm);
+    function look() {
+      window.location.href="/cc/fee.do?mm="+mm;
+    }
+</script>
+
 </body>
 </html>
 

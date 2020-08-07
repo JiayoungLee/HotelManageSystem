@@ -7,6 +7,7 @@ import com.hqyj.dao.House1Mapper;
 import com.hqyj.dao.User1Mapper;
 import com.hqyj.pojo.Enter1;
 import com.hqyj.pojo.House1;
+import com.hqyj.pojo.User1;
 import com.hqyj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -119,5 +120,16 @@ public class UserServiceImpl implements UserService {
         return house1Mapper.delAll(list);
     }
 
+
     //陈鸿结束------------------------------------
+
+    //王福开始-----------------------------------
+
+    @Override
+    public User1 selectUserById(Integer user_id) {
+        return user1Mapper.selectByPrimaryKey(user_id);
+    }
+
+    //王福结束-----------------------------------
+
 }

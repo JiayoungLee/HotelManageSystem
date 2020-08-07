@@ -2,6 +2,7 @@ package com.hqyj.service;
 
 import com.hqyj.pojo.Enter1;
 import com.hqyj.pojo.House1;
+import com.hqyj.pojo.User1;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,5 +34,13 @@ public interface UserService {
     int delAllHouse(List<String> list);
 
 
+
     //陈鸿结束
+
+
+    //王福开始
+    User1 selectUserById(Integer user_id);
+
+    //王福结束
+
 }

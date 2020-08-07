@@ -65,7 +65,7 @@
                         <c:if test="${x.hState ==2}">已订</c:if>
                         <c:if test="${x.hState ==3}">已入住</c:if>
                     </td>
-                    <td>${x.customerId}</td>
+                    <td>${x.cst.cName}</td>
                     <td>${x.hInfo}</td>
                     <td><div class="button-group">
                         <a class="button border-main" href="roomEditPage.do?hId=${x.hId}"><span class="icon-edit"></span> 修改</a>

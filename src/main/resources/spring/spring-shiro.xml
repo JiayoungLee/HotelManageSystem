@@ -32,33 +32,33 @@
          (use DefaultSecurityManager instead when there is no web environment)-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!--引入配置好的缓存bean-->
-       <!-- <property name="cacheManager" ref="cacheManager"/>-->
+        <!-- <property name="cacheManager" ref="cacheManager"/>-->
         <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
         <!--设置session的状态-->
         <property name="sessionMode" value="native"/>
         <!--引入配置好的自定义的realm -->
         <property name="realm" ref="jdbcRealm"/>
     </bean>
- <!--  设置缓存 <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        &lt;!&ndash; Set a net.sf.ehcache.CacheManager instance here if you already have one.  If not, a new one
-             will be creaed with a default config:
-             <property name="cacheManager" ref="ehCacheManager"/> &ndash;&gt;
-        &lt;!&ndash; If you don't have a pre-built net.sf.ehcache.CacheManager instance to inject, but you want
-             a specific Ehcache configuration to be used, specify that here.  If you don't, a default
-             will be used.:
-        <property name="cacheManagerConfigFile" value="classpath:some/path/to/ehcache.xml"/> &ndash;&gt;
-    </bean>-->
+    <!--  设置缓存 <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+           &lt;!&ndash; Set a net.sf.ehcache.CacheManager instance here if you already have one.  If not, a new one
+                will be creaed with a default config:
+                <property name="cacheManager" ref="ehCacheManager"/> &ndash;&gt;
+           &lt;!&ndash; If you don't have a pre-built net.sf.ehcache.CacheManager instance to inject, but you want
+                a specific Ehcache configuration to be used, specify that here.  If you don't, a default
+                will be used.:
+           <property name="cacheManagerConfigFile" value="classpath:some/path/to/ehcache.xml"/> &ndash;&gt;
+       </bean>-->
     <!-- Let's use some enterprise caching support for better performance.  You can replace this with any enterprise
          caching framework implementation that you like (Terracotta+Ehcache, Coherence, GigaSpaces, etc -->
-<!--    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        &lt;!&ndash; Set a net.sf.ehcache.CacheManager instance here if you already have one.  If not, a new one
-             will be creaed with a default config:
-             <property name="cacheManager" ref="ehCacheManager"/> &ndash;&gt;
-        &lt;!&ndash; If you don't have a pre-built net.sf.ehcache.CacheManager instance to inject, but you want
-             a specific Ehcache configuration to be used, specify that here.  If you don't, a default
-             will be used.:
-        <property name="cacheManagerConfigFile" value="classpath:some/path/to/ehcache.xml"/> &ndash;&gt;
-    </bean>-->
+    <!--    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+            &lt;!&ndash; Set a net.sf.ehcache.CacheManager instance here if you already have one.  If not, a new one
+                 will be creaed with a default config:
+                 <property name="cacheManager" ref="ehCacheManager"/> &ndash;&gt;
+            &lt;!&ndash; If you don't have a pre-built net.sf.ehcache.CacheManager instance to inject, but you want
+                 a specific Ehcache configuration to be used, specify that here.  If you don't, a default
+                 will be used.:
+            <property name="cacheManagerConfigFile" value="classpath:some/path/to/ehcache.xml"/> &ndash;&gt;
+        </bean>-->
 
     <!-- Used by the SecurityManager to access security data (users, roles, etc).
          Many other realm implementations can be used too (PropertiesRealm,
@@ -71,7 +71,7 @@
             <!-- The 'bootstrapDataPopulator' Sha256 hashes the password
                  (using the username as the salt) then base64 encodes it: -->
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-              <!--  <property name="hashAlgorithmName" value="SHA-256"/>-->
+                <!--  <property name="hashAlgorithmName" value="SHA-256"/>-->
                 <!--加密方式-->
                 <property name="hashAlgorithmName" value="MD5"/>
                 <!-- true means hex encoded, false means base64 encoded -->
@@ -95,7 +95,6 @@
 
     <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after
          the lifecycleBeanProcessor has run: -->
-    <!--使shiro的配置生效-->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
           depends-on="lifecycleBeanPostProcessor"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
@@ -115,12 +114,19 @@
     <!--配置shiro过滤器以便被web.xml识别-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <!--在 未被认证  之前都会重定向到vaule里面的url去-->
-        <property name="loginUrl" value="/uc/houseList.do"/>
+        <!--在未被认证之前都会重定向到vaule里面的url去-->
+        <property name="loginUrl" value="/tc/firstShiro.do"/>
         <!--认证成功执行的url-->
-        <property name="successUrl" value="/s/index"/>
-        <!--无法认证的url执行url--> <!--没有某些权限会重定向到value的url里面去-->
-        <property name="unauthorizedUrl" value="/pc/error.do"/>
+        <property name="successUrl" value=""/>
+        <!--无法认证的url执行url-->
+        <property name="unauthorizedUrl" value="/Eorro.jsp"/>
+
+        <!--        <property name="filters">-->
+        <!--            <map>-->
+        <!--                &lt;!&ndash;退出过滤器&ndash;&gt;-->
+        <!--                <entry key="logout" value-ref="systemLogoutFilter" />-->
+        <!--            </map>-->
+        <!--        </property>-->
         <!-- The 'filters' property is not necessary since any declared javax.servlet.Filter bean
              defined will be automatically acquired and available via its beanName in chain
              definitions, but you can perform overrides or parent/child consolidated configuration
@@ -132,30 +138,20 @@
         </property> -->
         <!--设置一些用户权限  访问方式...-->
         <!--
-            下面的value里面的anon和authc都是过滤器
            anon:匿名访问（不用认证就可以正常访问的url）
            authc:认证之后才能正常访问url
         -->
         <property name="filterChainDefinitions">
             <value>
-
-                /static/** =anon
-                /** = anon
-
-                /pc/checkLogin.do = anon
-                /pc/logout.do = anon
-                /tc/firstShiro.do = anon
-
-                /uc/toCheckOutPage.do = anon
-                /uc/checkOutPage.ajax = anon
-                /uc/selectLivingDetailByEId.ajax = anon
-                /uc/checkOut.ajax = anon
-
-
-                /pc/user.do = roles[user]
-                /pc/admin.do = roles[admin]
-
-                /pc/logout  = logout
+                /static/** = anon
+                /tc/liginAuthentication.ajax = anon
+                /tc/register.do =anon
+                /tc/usernameIsrepeat.ajax = anon
+                /tc/Sign.ajax = anon
+                /tc/success.ajax = anon
+                /tc/logout = logout
+                /tc/loginout.ajax =anon
+                /** = authc
             </value>
         </property>
     </bean>

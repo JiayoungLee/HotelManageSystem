@@ -31,7 +31,7 @@
       #{cPhone,jdbcType=VARCHAR}, #{cAccount,jdbcType=VARCHAR}, #{cPassword,jdbcType=VARCHAR}, 
       #{role,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hqyj.pojo.Customer1" >
+  <insert id="insertSelective" parameterType="com.hqyj.pojo.Customer1" useGeneratedKeys="true" keyProperty = "cId" keyColumn = "c_id">
     insert into customer1
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="cId != null" >
@@ -123,4 +123,17 @@
 
   </select>
     <!--符鸿夷结束-->
+
+  <!--王静开始-->
+  <!-- 客户登录/注册验证长训-->
+  <select id="selectByPersonNameAndPersonPassword" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from customer1
+    where c_account = #{username}
+  </select>
+
+
+  <!--王静结束-->
+
 </mapper>

@@ -83,13 +83,13 @@
             <if test="customerInfo != null">
                 customer_info,
             </if>
-            <if test="startTime != null">
+            <if test="startTime != null and startTime != ''">
                 start_time,
             </if>
-            <if test="endTimeEstimate != null">
+            <if test="endTimeEstimate != null and endTimeEstimate != ''">
                 end_time_estimate,
             </if>
-            <if test="endTimeActual != null">
+            <if test="endTimeActual != null and endTimeActual != ''">
                 end_time_actual,
             </if>
             <if test="orderCustomerId != null">
@@ -121,13 +121,13 @@
             <if test="customerInfo != null">
                 #{customerInfo,jdbcType=VARCHAR},
             </if>
-            <if test="startTime != null">
+            <if test="startTime != null and startTime != ''">
                 #{startTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="endTimeEstimate != null">
+            <if test="endTimeEstimate != null and endTimeEstimate != ''">
                 #{endTimeEstimate,jdbcType=TIMESTAMP},
             </if>
-            <if test="endTimeActual != null">
+            <if test="endTimeActual != null and endTimeActual != ''">
                 #{endTimeActual,jdbcType=TIMESTAMP},
             </if>
             <if test="orderCustomerId != null">
@@ -159,13 +159,13 @@
             <if test="customerInfo != null">
                 customer_info = #{customerInfo,jdbcType=VARCHAR},
             </if>
-            <if test="startTime != null">
+            <if test="startTime != null and startTime != ''">
                 start_time = #{startTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="endTimeEstimate != null">
+            <if test="endTimeEstimate != null and endTimeEstimate != ''">
                 end_time_estimate = #{endTimeEstimate,jdbcType=TIMESTAMP},
             </if>
-            <if test="endTimeActual != null">
+            <if test="endTimeActual != null and endTimeActual != ''">
                 end_time_actual = #{endTimeActual,jdbcType=TIMESTAMP},
             </if>
             <if test="orderCustomerId != null">
@@ -202,6 +202,7 @@
     where e_id = #{eId,jdbcType=INTEGER}
   </update>
 
+    <!--李佳阳开始-->
     <select id="selectLivingEnter" resultMap="BaseResultMap">
         SELECT
         customer1.c_id,
@@ -282,5 +283,123 @@
       e_state = 3
     where e_id = #{eId}
   </update>
+
+    <!--李佳阳结束-->
+
+    <!--李磊开始-->
+    <!--  //删除用户-->
+    <delete id="deleteOne" parameterType="java.lang.Integer" >
+    delete from enter1
+    where e_id = #{eId,jdbcType=INTEGER}
+   </delete>
+
+    <!--李磊开始-->
+
+    <!--退订修改enter状态为退订-->
+    <update id="editEnterState" parameterType="java.lang.Integer">
+    update enter1
+    set
+      e_state = 3
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+    <!--李磊开始-->
+
+    <!--李磊结束-->
+
+    <!--王福开始-->
+
+    <select id="selectEnterInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        SELECT
+        customer1.c_id,
+        customer1.c_name,
+        customer1.c_card,
+        customer1.c_phone,
+        customer1.c_account,
+        customer1.c_password,
+        customer1.role,
+        enter1.e_id,
+        enter1.house_id,
+        enter1.customer_id,
+        enter1.customer_info,
+        enter1.start_time,
+        enter1.end_time_estimate,
+        enter1.end_time_actual,
+        enter1.fee_total,
+        enter1.user_id,
+        enter1.e_state,
+        house1.h_id,
+        house1.h_name,
+        house1.h_amount,
+        house1.h_price,
+        house1.floor_id,
+        house1.h_state,
+        house1.customer_id,
+        house1.h_info,
+        user1.u_account,
+        user1.u_id,
+        user1.u_name,
+        user1.u_phone,
+        user1.u_password,
+        user1.role
+        FROM
+        enter1
+        INNER JOIN customer1 ON customer1.c_id = enter1.customer_id
+        INNER JOIN house1 ON enter1.house_id = house1.h_id
+        INNER JOIN user1 ON enter1.user_id = user1.u_id
+        <trim prefix=" where" suffix=" " suffixOverrides="and">
+            <if test="hId!=null and hId!=''">
+                house1.h_id=#{hId} and
+            </if>
+            enter1.e_state=1
+        </trim>
+    </select>
+
+    <select id="selectOrderRoomByeState" resultType="java.lang.Integer">
+    select count(*) from enter1 where e_state = 1
+  </select>
+
+    <select id="selectInfoByCustomerId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+SELECT
+customer1.c_id,
+customer1.c_name,
+customer1.c_card,
+customer1.c_phone,
+customer1.c_account,
+customer1.c_password,
+customer1.role,
+enter1.e_id,
+enter1.house_id,
+enter1.customer_id,
+enter1.customer_info,
+enter1.start_time,
+enter1.end_time_estimate,
+enter1.end_time_actual,
+enter1.fee_total,
+enter1.user_id,
+enter1.e_state,
+house1.h_id,
+house1.h_name,
+house1.h_amount,
+house1.h_price,
+house1.floor_id,
+house1.h_state,
+house1.customer_id,
+house1.h_info,
+user1.u_account,
+user1.u_id,
+user1.u_name,
+user1.u_phone,
+user1.u_password,
+user1.role
+FROM
+enter1
+INNER JOIN customer1 ON customer1.c_id = enter1.customer_id
+INNER JOIN house1 ON enter1.house_id = house1.h_id
+INNER JOIN user1 ON enter1.user_id = user1.u_id
+where customer1.c_id = #{cId}
+  </select>
+
+
+    <!--王福结束-->
 
 </mapper>

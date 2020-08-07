@@ -15,4 +15,10 @@ public interface User1Mapper {
 
     int updateByPrimaryKey(User1 record);
 
+    //王静开始
+
+    User1 selectByPersonNameAndPersonPassword(String username);
+
+    //王静结束
+
 }

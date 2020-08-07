@@ -5,14 +5,13 @@
     <id column="f_id" property="fId" jdbcType="INTEGER" />
     <result column="enter_id" property="enterId" jdbcType="INTEGER" />
     <result column="direct" property="direct" jdbcType="INTEGER" />
-    <result column="coustomer_id" property="coustomerId" jdbcType="INTEGER" />
+    <result column="coustomer_name" property="coustomerName" jdbcType="VARCHAR" />
     <result column="money" property="money" jdbcType="DOUBLE" />
-    <result column="house_id" property="houseId" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="house_name" property="houseName" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    f_id, enter_id, direct, coustomer_id, money, house_id, description, user_id
+    f_id, enter_id, direct, coustomer_name, money, house_name, user_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -125,4 +124,22 @@
       user_id = #{userId,jdbcType=INTEGER}
     where f_id = #{fId,jdbcType=INTEGER}
   </update>
+
+  <!--  生成退费清单-->
+  <insert id="insertFeeByFee" parameterType="com.hqyj.pojo.Fee1">
+    insert into fee1 (f_id, enter_id, direct,
+    coustomer_name, money, user_id,
+    house_name)
+    values (#{fId,jdbcType=INTEGER}, #{enterId,jdbcType=INTEGER}, #{direct,jdbcType=VARCHAR},
+    #{coustomerName,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER},
+    #{houseName,jdbcType=VARCHAR})
+  </insert>
+
+<!--退费清单-->
+  <select id="selectFee" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from fee1
+    where enter_id = #{enterId,jdbcType=INTEGER}
+  </select>
 </mapper>

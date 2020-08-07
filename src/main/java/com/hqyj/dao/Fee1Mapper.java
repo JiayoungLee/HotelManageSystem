@@ -14,4 +14,12 @@ public interface Fee1Mapper {
     int updateByPrimaryKeySelective(Fee1 record);
 
     int updateByPrimaryKey(Fee1 record);
+
+    //李磊开始
+    //生成退费清单
+    int insertFeeByFee(Fee1 fee);
+
+    Fee1 selectFee(Integer enterId);
+
+    //李磊结束
 }

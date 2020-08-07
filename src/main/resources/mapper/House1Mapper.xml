@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hqyj.dao.House1Mapper" >
-  <resultMap id="BaseResultMap" type="com.hqyj.pojo.House1" >
-    <id column="h_id" property="hId" jdbcType="INTEGER" />
-    <result column="h_name" property="hName" jdbcType="VARCHAR" />
-    <result column="h_amount" property="hAmount" jdbcType="INTEGER" />
-    <result column="h_price" property="hPrice" jdbcType="DOUBLE" />
-    <result column="floor_id" property="floorId" jdbcType="INTEGER" />
-    <result column="h_state" property="hState" jdbcType="INTEGER" />
-    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
-    <result column="h_info" property="hInfo" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.hqyj.dao.House1Mapper">
+    <resultMap id="BaseResultMap" type="com.hqyj.pojo.House1">
+        <id column="h_id" property="hId" jdbcType="INTEGER"/>
+        <result column="h_name" property="hName" jdbcType="VARCHAR"/>
+        <result column="h_amount" property="hAmount" jdbcType="INTEGER"/>
+        <result column="h_price" property="hPrice" jdbcType="DOUBLE"/>
+        <result column="floor_id" property="floorId" jdbcType="INTEGER"/>
+        <result column="h_state" property="hState" jdbcType="INTEGER"/>
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+        <result column="h_info" property="hInfo" jdbcType="VARCHAR"/>
+        <association property="cst" javaType="com.hqyj.pojo.Customer1">
+            <id column="c_id" property="cId" jdbcType="INTEGER"/>
+            <result column="c_name" property="cName" jdbcType="VARCHAR"/>
+        </association>
+        <association property="enter" javaType="com.hqyj.pojo.Enter1">
+            <id column="e_id" property="eId" jdbcType="INTEGER"/>
+            <result column="house_id" property="houseId" jdbcType="INTEGER"/>
+            <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+            <result column="customer_info" property="customerInfo" jdbcType="VARCHAR"/>
+            <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+            <result column="end_time_estimate" property="endTimeEstimate" jdbcType="TIMESTAMP"/>
+            <result column="end_time_actual" property="endTimeActual" jdbcType="TIMESTAMP"/>
+            <result column="order_customer_id" property="orderCustomerId" jdbcType="INTEGER"/>
+            <result column="fee_total" property="feeTotal" jdbcType="DOUBLE"/>
+            <result column="user_id" property="userId" jdbcType="INTEGER"/>
+            <result column="e_state" property="eState" jdbcType="INTEGER"/>
+            <result column="e_price" property="ePrice" jdbcType="DOUBLE"/>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
     h_id, h_name, h_amount, h_price, floor_id, h_state, customer_id, h_info
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from house1
-    where h_id = #{hId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from house1
+        where h_id = #{hId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from house1
     where h_id = #{hId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.hqyj.pojo.House1" >
+    <insert id="insert" parameterType="com.hqyj.pojo.House1">
     insert into house1 (h_id, h_name, h_amount, 
       h_price, floor_id, h_state, 
       customer_id, h_info)
@@ -32,89 +50,89 @@
       #{hPrice,jdbcType=DOUBLE}, #{floorId,jdbcType=INTEGER}, #{hState,jdbcType=INTEGER}, 
       #{customerId,jdbcType=INTEGER}, #{hInfo,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hqyj.pojo.House1" >
-    insert into house1
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="hId != null" >
-        h_id,
-      </if>
-      <if test="hName != null" >
-        h_name,
-      </if>
-      <if test="hAmount != null" >
-        h_amount,
-      </if>
-      <if test="hPrice != null" >
-        h_price,
-      </if>
-      <if test="floorId != null" >
-        floor_id,
-      </if>
-      <if test="hState != null" >
-        h_state,
-      </if>
-      <if test="customerId != null" >
-        customer_id,
-      </if>
-      <if test="hInfo != null" >
-        h_info,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="hId != null" >
-        #{hId,jdbcType=INTEGER},
-      </if>
-      <if test="hName != null" >
-        #{hName,jdbcType=VARCHAR},
-      </if>
-      <if test="hAmount != null" >
-        #{hAmount,jdbcType=INTEGER},
-      </if>
-      <if test="hPrice != null" >
-        #{hPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="floorId != null" >
-        #{floorId,jdbcType=INTEGER},
-      </if>
-      <if test="hState != null" >
-        #{hState,jdbcType=INTEGER},
-      </if>
-      <if test="customerId != null" >
-        #{customerId,jdbcType=INTEGER},
-      </if>
-      <if test="hInfo != null" >
-        #{hInfo,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.House1" >
-    update house1
-    <set >
-      <if test="hName != null" >
-        h_name = #{hName,jdbcType=VARCHAR},
-      </if>
-      <if test="hAmount != null" >
-        h_amount = #{hAmount,jdbcType=INTEGER},
-      </if>
-      <if test="hPrice != null" >
-        h_price = #{hPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="floorId != null" >
-        floor_id = #{floorId,jdbcType=INTEGER},
-      </if>
-      <if test="hState != null" >
-        h_state = #{hState,jdbcType=INTEGER},
-      </if>
-      <if test="customerId != null" >
-        customer_id = #{customerId,jdbcType=INTEGER},
-      </if>
-      <if test="hInfo != null" >
-        h_info = #{hInfo,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where h_id = #{hId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.House1" >
+    <insert id="insertSelective" parameterType="com.hqyj.pojo.House1">
+        insert into house1
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hId != null">
+                h_id,
+            </if>
+            <if test="hName != null">
+                h_name,
+            </if>
+            <if test="hAmount != null">
+                h_amount,
+            </if>
+            <if test="hPrice != null">
+                h_price,
+            </if>
+            <if test="floorId != null">
+                floor_id,
+            </if>
+            <if test="hState != null">
+                h_state,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="hInfo != null">
+                h_info,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hId != null">
+                #{hId,jdbcType=INTEGER},
+            </if>
+            <if test="hName != null">
+                #{hName,jdbcType=VARCHAR},
+            </if>
+            <if test="hAmount != null">
+                #{hAmount,jdbcType=INTEGER},
+            </if>
+            <if test="hPrice != null">
+                #{hPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="floorId != null">
+                #{floorId,jdbcType=INTEGER},
+            </if>
+            <if test="hState != null">
+                #{hState,jdbcType=INTEGER},
+            </if>
+            <if test="customerId != null">
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="hInfo != null">
+                #{hInfo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.House1">
+        update house1
+        <set>
+            <if test="hName != null">
+                h_name = #{hName,jdbcType=VARCHAR},
+            </if>
+            <if test="hAmount != null">
+                h_amount = #{hAmount,jdbcType=INTEGER},
+            </if>
+            <if test="hPrice != null">
+                h_price = #{hPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="floorId != null">
+                floor_id = #{floorId,jdbcType=INTEGER},
+            </if>
+            <if test="hState != null">
+                h_state = #{hState,jdbcType=INTEGER},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="hInfo != null">
+                h_info = #{hInfo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where h_id = #{hId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.House1">
     update house1
     set h_name = #{hName,jdbcType=VARCHAR},
       h_amount = #{hAmount,jdbcType=INTEGER},
@@ -126,47 +144,173 @@
     where h_id = #{hId,jdbcType=INTEGER}
   </update>
 
-  <!--李佳阳开始-->
-  <!--退房修改房间状态-->
-  <update id="checkOutHouse" >
+    <!--李佳阳开始-->
+    <!--退房修改房间状态-->
+    <update id="checkOutHouse">
     update house1
     set h_state =1
     where h_id = #{hId,jdbcType=INTEGER}
   </update>
-  <!--李佳阳结束-->
+    <!--李佳阳结束-->
 
-<!--陈鸿开始-->
-  <!--查询分页-->
-  <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.hqyj.pojo.House1" >
-    select
-    <include refid="Base_Column_List" />
-    from house1
-    <trim prefix=" where" suffix=" " suffixOverrides="and">
-      <if test="floorId!='' and floorId!=null">
-        floor_id = #{floorId,jdbcType=INTEGER} and
-      </if>
-      <if test="hAmount!='' and hAmount!=null">
-        h_amount=#{hAmount,jdbcType=INTEGER} and
-      </if>
-      <if test="hState!='' and hState!=null">
-        h_state=#{hState,jdbcType=INTEGER} and
-      </if>
-      <if test="hName!='' and hName!=null">
-        h_name=#{hName,jdbcType=VARCHAR} and
-      </if>
-    </trim>
+    <!--陈鸿开始-->
+    <!--查询分页-->
+    <select id="selectByPage" resultMap="BaseResultMap" parameterType="com.hqyj.pojo.House1">
+        select
+        house1.h_id,
+        house1.h_name,
+        house1.floor_id,
+        house1.h_amount,
+        house1.h_price,
+        house1.h_state,
+        house1.customer_id,
+        house1.h_info,
+        customer1.c_name,
+        customer1.c_id
+        FROM
+        house1
+        INNER JOIN customer1 ON house1.customer_id = customer1.c_id
+        <trim prefix=" where" suffix=" " suffixOverrides="and">
+            <if test="floorId!='' and floorId!=null">
+                floor_id = #{floorId,jdbcType=INTEGER} and
+            </if>
+            <if test="hAmount!='' and hAmount!=null">
+                h_amount=#{hAmount,jdbcType=INTEGER} and
+            </if>
+            <if test="hState!='' and hState!=null">
+                h_state=#{hState,jdbcType=INTEGER} and
+            </if>
+            <if test="hName!='' and hName!=null">
+                h_name=#{hName,jdbcType=VARCHAR} and
+            </if>
+        </trim>
+        order by house1.h_id
+    </select>
+
+    <!--批量删除-->
+    <delete id="delAll">
+        delete from house1
+        <trim prefix=" where">
+            h_id in (
+            <foreach collection="list" item="x" separator=",">
+                #{x}
+            </foreach>
+            )
+        </trim>
+    </delete>
+    <!--陈鸿结束-->
+
+    <!--李磊开始-->
+    <!--  订单管理分页-->
+    <select id="selectByOrderPage" resultMap="BaseResultMap" parameterType="com.hqyj.pojo.House1">
+        SELECT
+        enter1.customer_info,
+        house1.h_id,
+        house1.h_name,
+        house1.h_amount,
+        house1.h_price,
+        house1.floor_id,
+        house1.h_state,
+        house1.customer_id,
+        house1.h_info,
+        enter1.e_id,
+        enter1.house_id,
+        enter1.customer_id,
+        enter1.start_time,
+        enter1.end_time_estimate,
+        enter1.end_time_actual,
+        enter1.order_customer_id,
+        enter1.fee_total,
+        enter1.user_id,
+        enter1.e_state,
+        enter1.e_price
+        FROM
+        house1
+        INNER JOIN enter1 ON house1.h_id = enter1.house_id AND house1.customer_id = enter1.customer_id
+        <trim prefix=" where" suffix=" " suffixOverrides="and">
+            <if test="customerId != '' and customerId != null">
+                house1.customer_id = #{customerId} and
+            </if>
+            h_state = 2
+        </trim>
+    </select>
+
+    <!--  //撤销订单-->
+    <update id="updateByhName" parameterType="java.lang.String">
+    update house1
+    set
+      h_state = 1
+    where h_name = #{hName}
+  </update>
+
+    <!--李磊结束-->
+
+    <!--王福开始-->
+
+    <select id="selectAllHouseByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        house1.h_id,
+        house1.h_name,
+        house1.h_amount,
+        house1.h_price,
+        house1.floor_id,
+        house1.h_state,
+        house1.customer_id,
+        house1.h_info
+        FROM
+        house1
+        <trim prefix=" where " suffix=" " suffixOverrides=" and">
+            <if test="hAmount!=null and hAmount!=''">
+                h_amount=#{hAmount,jdbcType=INTEGER} and
+            </if>
+            h_state = 1
+        </trim>
+    </select>
+
+    <select id="selectHouseById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+house1.h_id,
+house1.h_name,
+house1.h_amount,
+house1.h_price,
+house1.floor_id,
+house1.h_state,
+house1.customer_id,
+house1.h_info
+FROM
+house1
+    WHERE house1.h_id=#{hId,jdbcType=INTEGER}
   </select>
 
-  <!--批量删除-->
-  <delete id="delAll">
-    delete from house1
-    <trim prefix=" where">
-      h_id in (
-      <foreach collection="list" item="x" separator=",">
-        #{x}
-      </foreach>
-      )
-    </trim>
-  </delete>
-  <!--陈鸿结束-->
+    <select id="selectVacantRoom" resultType="java.lang.Integer" >
+    select count(*)
+    from house1
+    where h_state = 1
+    </select>
+
+    <!--王福结束-->
+
+
+    <!--王静开始-->
+    <!--  查询分页-->
+    <select id="houseselectByPage" resultMap="BaseResultMap" parameterType="com.hqyj.pojo.House1">
+        select
+        <include refid="Base_Column_List"/>
+        from house1
+        <trim prefix="where " suffix=" " suffixOverrides="and">
+            <if test="hAmount!='' and hAmount!=null">
+                h_amount = #{hAmount,jdbcType=INTEGER} and
+            </if>
+            <if test="hState!='' and hState!=null">
+                h_state = #{hState,jdbcType=INTEGER} and
+            </if>
+            <if test="hPrice!='' and hPrice!=null">
+                #{hPrice,jdbcType=DOUBLE} >= h_price and
+            </if>
+        </trim>
+        order by h_price
+    </select>
+
+    <!--王静结束-->
+
 </mapper>

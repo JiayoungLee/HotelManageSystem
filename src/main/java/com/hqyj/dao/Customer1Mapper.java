@@ -1,6 +1,7 @@
 package com.hqyj.dao;
 
 import com.hqyj.pojo.Customer1;
+import com.hqyj.pojo.User1;
 
 public interface Customer1Mapper {
     int deleteByPrimaryKey(Integer cId);
@@ -16,4 +17,6 @@ public interface Customer1Mapper {
     int updateByPrimaryKey(Customer1 record);
 
     Customer1 selectByCustomer(int cId) ;
+
+    Customer1 selectByPersonNameAndPersonPassword(String username);
 }

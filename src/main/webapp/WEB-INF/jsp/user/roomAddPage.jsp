@@ -67,15 +67,7 @@
                     <div class="tips"></div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="label">
-                    <label>订房人：</label>
-                </div>
-                <div class="field">
-                    <input type="text" class="input w50"  name="customerId"/>
-                    <div class="tips"></div>
-                </div>
-            </div>
+
             <div class="form-group">
                 <div class="label">
                     <label>房间描述：</label>

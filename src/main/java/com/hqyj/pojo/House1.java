@@ -17,6 +17,26 @@ public class House1 extends MyPage{
 
     private String hInfo;
 
+    private Customer1 cst;
+
+    private Enter1 enter;
+
+    public Enter1 getEnter() {
+        return enter;
+    }
+
+    public void setEnter(Enter1 enter) {
+        this.enter = enter;
+    }
+
+    public Customer1 getCst() {
+        return cst;
+    }
+
+    public void setCst(Customer1 cst) {
+        this.cst = cst;
+    }
+
     public Integer gethId() {
         return hId;
     }
@@ -92,6 +112,7 @@ public class House1 extends MyPage{
                 ", hState=" + hState +
                 ", customerId=" + customerId +
                 ", hInfo='" + hInfo + '\'' +
+                ", cst=" + cst +
                 '}';
     }
 }

@@ -53,7 +53,6 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="HotelManageSystem/web/Web" />
-      <element id="dir-copy" path="$PROJECT_DIR$/src/main/webapp/static" />
     </root>
   </artifact>
 </component>

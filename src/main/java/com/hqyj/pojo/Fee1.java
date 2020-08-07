@@ -5,17 +5,15 @@ public class Fee1 {
 
     private Integer enterId;
 
-    private Integer direct;
+    private String direct;
 
-    private Integer coustomerId;
+    private String coustomerName;
 
     private Double money;
 
-    private String houseId;
-
-    private String description;
-
     private Integer userId;
+
+    private String houseName;
 
     public Integer getfId() {
         return fId;
@@ -33,20 +31,20 @@ public class Fee1 {
         this.enterId = enterId;
     }
 
-    public Integer getDirect() {
+    public String getDirect() {
         return direct;
     }
 
-    public void setDirect(Integer direct) {
+    public void setDirect(String direct) {
         this.direct = direct;
     }
 
-    public Integer getCoustomerId() {
-        return coustomerId;
+    public String getCoustomerName() {
+        return coustomerName;
     }
 
-    public void setCoustomerId(Integer coustomerId) {
-        this.coustomerId = coustomerId;
+    public void setCoustomerName(String coustomerName) {
+        this.coustomerName = coustomerName;
     }
 
     public Double getMoney() {
@@ -57,22 +55,6 @@ public class Fee1 {
         this.money = money;
     }
 
-    public String getHouseId() {
-        return houseId;
-    }
-
-    public void setHouseId(String houseId) {
-        this.houseId = houseId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Integer getUserId() {
         return userId;
     }
@@ -81,17 +63,24 @@ public class Fee1 {
         this.userId = userId;
     }
 
+    public String getHouseName() {
+        return houseName;
+    }
+
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
+
     @Override
     public String toString() {
         return "Fee1{" +
                 "fId=" + fId +
                 ", enterId=" + enterId +
-                ", direct=" + direct +
-                ", coustomerId=" + coustomerId +
+                ", direct='" + direct + '\'' +
+                ", coustomerName='" + coustomerName + '\'' +
                 ", money=" + money +
-                ", houseId='" + houseId + '\'' +
-                ", description='" + description + '\'' +
                 ", userId=" + userId +
+                ", houseName='" + houseName + '\'' +
                 '}';
     }
 }
